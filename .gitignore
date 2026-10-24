@@ -1,0 +1,8 @@
+build/
+models/
+.venv/
+__pycache__/
+*.pyc
+tests/.cache/
+results/profiles/
+.pytest_cache/
