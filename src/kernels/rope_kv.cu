@@ -41,6 +41,43 @@ __global__ void kv_write_kernel(const float* __restrict__ qkv, __half* __restric
     cache[(static_cast<size_t>(head) * max_seq + pos) * hd + d] = __float2half_rn(src[d]);
 }
 
+// rope_kv_fused_kernel: grid nh + 2*nkv, block hd/2 (32), no shared memory.
+// Blocks [0, nh): rotate q head b in place. Blocks [nh, nh+nkv): rotate k head b-nh in registers
+// and write it to k_cache as fp16 (qkv's k part is left unrotated; nothing reads it afterwards).
+// Blocks [nh+nkv, nh+2*nkv): copy v head to v_cache, two elements per thread.
+__global__ void rope_kv_fused_kernel(float* __restrict__ qkv, const float* __restrict__ inv_freq,
+                                     __half* __restrict__ k_cache, __half* __restrict__ v_cache,
+                                     const int* __restrict__ d_pos, int nh, int nkv, int hd, int max_seq) {
+    const int b = blockIdx.x;
+    const int i = threadIdx.x;
+    const int half = hd / 2;
+    const int pos = *d_pos;
+    if (b < nh + nkv) {
+        float* v = qkv + b * hd;  // q heads, then k heads, are contiguous in qkv
+        const float ang = static_cast<float>(pos) * inv_freq[i];
+        float s, c;
+        sincosf(ang, &s, &c);
+        const float x0 = v[i];
+        const float x1 = v[i + half];
+        const float r0 = x0 * c - x1 * s;
+        const float r1 = x1 * c + x0 * s;
+        if (b < nh) {
+            v[i] = r0;
+            v[i + half] = r1;
+        } else {
+            __half* dst = k_cache + (static_cast<size_t>(b - nh) * max_seq + pos) * hd;
+            dst[i] = __float2half_rn(r0);
+            dst[i + half] = __float2half_rn(r1);
+        }
+    } else {
+        const int head = b - nh - nkv;
+        const float* src = qkv + (nh + nkv + head) * hd;
+        __half* dst = v_cache + (static_cast<size_t>(head) * max_seq + pos) * hd;
+        dst[2 * i] = __float2half_rn(src[2 * i]);
+        dst[2 * i + 1] = __float2half_rn(src[2 * i + 1]);
+    }
+}
+
 }  // namespace
 
 void launch_rope_inplace(float* qkv, const float* inv_freq, const int* d_pos, int nh, int nkv, int hd, cudaStream_t stream) {
@@ -58,8 +95,12 @@ void launch_kv_write(const float* qkv, __half* k_cache_l, __half* v_cache_l, con
     CUDALLM_CUDA_CHECK(cudaGetLastError());
 }
 
-void launch_rope_kv_fused(float*, const float*, __half*, __half*, const int*, int, int, int, int, cudaStream_t) {
-    throw std::runtime_error("not implemented: launch_rope_kv_fused");
+void launch_rope_kv_fused(float* qkv, const float* inv_freq, __half* k_cache_l, __half* v_cache_l, const int* d_pos, int nh,
+                          int nkv, int hd, int max_seq, cudaStream_t stream) {
+    CUDALLM_CHECK(qkv && inv_freq && k_cache_l && v_cache_l && d_pos, "launch_rope_kv_fused: null pointer");
+    CUDALLM_CHECK(nh > 0 && nkv > 0 && hd > 0 && hd % 2 == 0 && hd <= 2048 && max_seq > 0, "launch_rope_kv_fused: bad dimensions");
+    rope_kv_fused_kernel<<<nh + 2 * nkv, hd / 2, 0, stream>>>(qkv, inv_freq, k_cache_l, v_cache_l, d_pos, nh, nkv, hd, max_seq);
+    CUDALLM_CUDA_CHECK(cudaGetLastError());
 }
 
 }  // namespace cudallm

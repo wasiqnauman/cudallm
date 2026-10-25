@@ -131,7 +131,7 @@ def _ulp_diff(a: np.ndarray, b: np.ndarray) -> np.ndarray:
 
 
 @pytest.mark.parametrize("pos", [0, 1, 777, 4095])
-@pytest.mark.parametrize("fused", [0])
+@pytest.mark.parametrize("fused", [0, 1])
 def test_rope_kv(fused, pos):
     rng = np.random.default_rng(12 + pos)
     inv_freq = llama3_inv_freq()
