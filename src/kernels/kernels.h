@@ -13,10 +13,11 @@ namespace cudallm {
 enum class Epilogue : int { STORE = 0, ADD = 1, SWIGLU = 2 };
 constexpr int kAttnChunk = 128;
 constexpr int kArgmaxBlocks = 256;
-// Default rows-per-block for opt matvec, indexed by WeightType. Initial value 4; Phase 3 sweep (§17) sets final values.
-constexpr int kDefaultRpbBf16 = 4;
-constexpr int kDefaultRpbInt8 = 4;
-constexpr int kDefaultRpbInt4 = 4;
+// Default rows-per-block for opt matvec, indexed by WeightType. Set from the Phase 3 sweep winners
+// (results/sweep_matvec.json).
+constexpr int kDefaultRpbBf16 = 8;
+constexpr int kDefaultRpbInt8 = 8;
+constexpr int kDefaultRpbInt4 = 8;
 int default_rpb(WeightType w);
 
 struct MatvecArgs {
