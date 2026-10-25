@@ -15,6 +15,7 @@ pytestmark = pytest.mark.model
 # (dtype, matvec, attn, fuse, graph)
 ENABLED_CONFIGS = [
     ("bf16", "naive", "naive", 0, 0),
+    ("bf16", "opt", "opt", 1, 1),
 ]
 
 PROMPT = "What is the capital of France? Answer in one word."
