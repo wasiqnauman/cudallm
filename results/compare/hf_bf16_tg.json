@@ -1,0 +1,50 @@
+{
+  "tool": "bench_hf",
+  "name": "hf_bf16_tg",
+  "model": "/home/kennarr/Desktop/cudallm/models/hf/Llama-3.2-1B-Instruct",
+  "dtype": "bf16",
+  "attn_implementation": "sdpa",
+  "prompt_len": 1,
+  "gen": 256,
+  "reps": 5,
+  "decode_tok_s": [
+    90.3856362346046,
+    90.0659424904722,
+    89.95035802070532,
+    90.12201290184335,
+    89.84923750354142
+  ],
+  "decode_tok_s_median": 90.0659424904722,
+  "t1_s": [
+    0.011460313005954958,
+    0.01131558100314578,
+    0.011221604996535461,
+    0.01128907200472895,
+    0.011174186001881026
+  ],
+  "t257_s": [
+    2.8437687490004464,
+    2.8536774430031073,
+    2.857235846997355,
+    2.851882527000271,
+    2.8603914650011575
+  ],
+  "transformers": "4.46.3",
+  "torch": "2.5.1+cu124",
+  "git_commit": "0580d7d-dirty",
+  "gpu_before": {
+    "name": "NVIDIA GeForce RTX 3060",
+    "clocks_sm_mhz": 1942.0,
+    "clocks_mem_mhz": 7301.0,
+    "temperature_c": 69.0,
+    "power_draw_w": 139.26
+  },
+  "gpu_after": {
+    "name": "NVIDIA GeForce RTX 3060",
+    "clocks_sm_mhz": 1942.0,
+    "clocks_mem_mhz": 7301.0,
+    "temperature_c": 71.0,
+    "power_draw_w": 142.17
+  },
+  "gpu_name": "NVIDIA GeForce RTX 3060"
+}
