@@ -32,7 +32,7 @@ __device__ __forceinline__ float row_dot(const MatvecArgs& a, int r, const float
         const int iters = a.cols / 256;
 #pragma unroll 4
         for (int it = 0; it < iters; ++it) {
-            const uint4 v = row[it * 32 + lane];
+            const uint4 v = __ldcs(row + it * 32 + lane);
             const int base = it * 256 + lane * 8;
             const float4 x0 = *reinterpret_cast<const float4*>(xs + base);
             const float4 x1 = *reinterpret_cast<const float4*>(xs + base + 4);
@@ -51,7 +51,7 @@ __device__ __forceinline__ float row_dot(const MatvecArgs& a, int r, const float
         const int iters = a.cols / 512;
 #pragma unroll 4
         for (int it = 0; it < iters; ++it) {
-            const uint4 v = row[it * 32 + lane];
+            const uint4 v = __ldcs(row + it * 32 + lane);
             const int base = it * 512 + lane * 16;
             const uint32_t words[4] = {v.x, v.y, v.z, v.w};
 #pragma unroll
@@ -71,7 +71,7 @@ __device__ __forceinline__ float row_dot(const MatvecArgs& a, int r, const float
         const int iters = a.cols / 1024;
 #pragma unroll 4
         for (int it = 0; it < iters; ++it) {
-            const uint4 v = row[it * 32 + lane];
+            const uint4 v = __ldcs(row + it * 32 + lane);
             const int base = it * 1024 + lane * 32;
             const uint32_t words[4] = {v.x, v.y, v.z, v.w};
             float part = 0.f;
