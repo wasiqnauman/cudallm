@@ -1,0 +1,46 @@
+{
+  "tool": "cudallm_bench",
+  "model": "/home/kennarr/Desktop/cudallm/models/llama-3.2-1b-instruct.bf16.cudallm",
+  "weight_dtype": "bf16",
+  "options": {
+    "matvec": "opt",
+    "attn": "opt",
+    "fuse": true,
+    "graph": false,
+    "rpb": 8
+  },
+  "prompt_len": 128,
+  "gen": 256,
+  "reps": 5,
+  "decode_tok_s": [
+    118.44187647582737,
+    118.55078467356296,
+    118.75959861372235,
+    118.97107969917305,
+    119.084993834377
+  ],
+  "decode_tok_s_median": 118.75959861372235,
+  "ms_per_token_median": 8.420372009277344,
+  "weight_bytes": 2471764096,
+  "kv_bytes_per_token_avg": 8388608,
+  "bytes_per_token": 2480152704,
+  "achieved_gbps_median": 294.54193962777816,
+  "gpu_name": "NVIDIA GeForce RTX 3060",
+  "name": "A3_fused",
+  "git_commit": "f4b5056",
+  "gpu_before": {
+    "name": "NVIDIA GeForce RTX 3060",
+    "clocks_sm_mhz": 210.0,
+    "clocks_mem_mhz": 405.0,
+    "temperature_c": 61.0,
+    "power_draw_w": 22.07
+  },
+  "gpu_after": {
+    "name": "NVIDIA GeForce RTX 3060",
+    "clocks_sm_mhz": 1927.0,
+    "clocks_mem_mhz": 7301.0,
+    "temperature_c": 74.0,
+    "power_draw_w": 140.68
+  },
+  "pct_of_peak": 86.12304739444289
+}
