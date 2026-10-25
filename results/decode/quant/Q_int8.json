@@ -13,34 +13,34 @@
   "gen": 256,
   "reps": 5,
   "decode_tok_s": [
-    224.82863017781293,
-    225.0273672246984,
-    224.96600545543248,
-    224.8702880918957,
-    224.91946332550157
+    228.24755478823113,
+    231.41355294362748,
+    229.012178371504,
+    229.75256445313872,
+    231.11555259668765
   ],
-  "decode_tok_s_median": 224.91946332550157,
-  "ms_per_token_median": 4.446035861968994,
+  "decode_tok_s_median": 229.75256445313872,
+  "ms_per_token_median": 4.352508544921875,
   "weight_bytes": 1238037632,
   "kv_bytes_per_token_avg": 8388608,
   "bytes_per_token": 1246426240,
-  "achieved_gbps_median": 280.3455209756228,
+  "achieved_gbps_median": 286.3696250416834,
   "gpu_name": "NVIDIA GeForce RTX 3060",
   "name": "Q_int8",
-  "git_commit": "4c7f605-dirty",
+  "git_commit": "d578b10-dirty",
   "gpu_before": {
     "name": "NVIDIA GeForce RTX 3060",
-    "clocks_sm_mhz": 1942.0,
+    "clocks_sm_mhz": 1920.0,
     "clocks_mem_mhz": 7501.0,
-    "temperature_c": 69.0,
-    "power_draw_w": 146.91
+    "temperature_c": 76.0,
+    "power_draw_w": 154.25
   },
   "gpu_after": {
     "name": "NVIDIA GeForce RTX 3060",
-    "clocks_sm_mhz": 1927.0,
+    "clocks_sm_mhz": 1920.0,
     "clocks_mem_mhz": 7501.0,
-    "temperature_c": 71.0,
-    "power_draw_w": 160.82
+    "temperature_c": 79.0,
+    "power_draw_w": 160.23
   },
-  "pct_of_peak": 81.97206353809966
+  "pct_of_peak": 83.70618024879035
 }

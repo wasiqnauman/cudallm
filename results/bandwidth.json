@@ -1,19 +1,19 @@
 {
   "tool": "cudallm_bandwidth",
-  "read_gbps_best": 342.00129760710666,
-  "read_gbps_median": 341.44450559557123,
-  "write_gbps_best": 335.7592025226597,
-  "write_gbps_median": 333.51988518693213,
-  "copy_gbps_best": 329.85434195975915,
-  "copy_gbps_median": 315.88777928613547,
-  "memcpy_d2d_gbps_best": 331.7523819471247,
+  "read_gbps_best": 342.11288125983,
+  "read_gbps_median": 340.83408364702825,
+  "write_gbps_best": 336.9460211000901,
+  "write_gbps_median": 327.06675343013035,
+  "copy_gbps_best": 330.1561744818269,
+  "copy_gbps_median": 325.9487918245983,
+  "memcpy_d2d_gbps_best": 331.9854411273128,
   "gpu_name": "NVIDIA GeForce RTX 3060",
-  "git_commit": "0580d7d-dirty",
+  "git_commit": "d578b10-dirty",
   "gpu_snapshot": {
     "name": "NVIDIA GeForce RTX 3060",
     "clocks_sm_mhz": 1965.0,
     "clocks_mem_mhz": 7501.0,
-    "temperature_c": 60.0,
-    "power_draw_w": 59.58
+    "temperature_c": 53.0,
+    "power_draw_w": 71.14
   }
 }

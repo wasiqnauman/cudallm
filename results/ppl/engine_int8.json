@@ -49,19 +49,19 @@
     2.7513552595902726
   ],
   "dataset": "Salesforce/wikitext wikitext-2-raw-v1 test",
-  "git_commit": "4c7f605-dirty",
+  "git_commit": "d578b10-dirty",
   "gpu_before": {
     "name": "NVIDIA GeForce RTX 3060",
     "clocks_sm_mhz": 210.0,
     "clocks_mem_mhz": 405.0,
-    "temperature_c": 64.0,
-    "power_draw_w": 24.62
+    "temperature_c": 65.0,
+    "power_draw_w": 25.02
   },
   "gpu_after": {
     "name": "NVIDIA GeForce RTX 3060",
-    "clocks_sm_mhz": 1912.0,
+    "clocks_sm_mhz": 1897.0,
     "clocks_mem_mhz": 7301.0,
-    "temperature_c": 82.0,
-    "power_draw_w": 169.31
+    "temperature_c": 83.0,
+    "power_draw_w": 169.61
   }
 }

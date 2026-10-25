@@ -224,7 +224,7 @@ def main() -> None:
         ax.text(v, i, f" {v:.1f}", va="center")
     ax.set_xlabel("decode tok/s (bf16, prompt 128, gen 256)")
     ax.set_title("Ablation")
-    ax.legend(loc="lower right")
+    ax.legend(loc="upper right")
     fig.tight_layout()
     fig.savefig(IMG / "ablation.png", dpi=150)
     plt.close(fig)
