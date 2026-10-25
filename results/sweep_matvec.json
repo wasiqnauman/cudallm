@@ -21,8 +21,8 @@
             "fuse_norm": true,
             "rpb": 1,
             "bytes": 12582912,
-            "median_us": 80.89599758386612,
-            "gbps": 155.54430844313532
+            "median_us": 59.29600074887276,
+            "gbps": 212.20507017480784
           },
           {
             "name": "wo",
@@ -34,8 +34,8 @@
             "fuse_norm": false,
             "rpb": 1,
             "bytes": 8388608,
-            "median_us": 49.15200173854828,
-            "gbps": 170.66666063004092
+            "median_us": 36.86400130391121,
+            "gbps": 227.5555475067212
           },
           {
             "name": "gate_up",
@@ -47,8 +47,8 @@
             "fuse_norm": true,
             "rpb": 1,
             "bytes": 67108864,
-            "median_us": 241.66400730609894,
-            "gbps": 277.69490685883517
+            "median_us": 219.13599967956543,
+            "gbps": 306.24299110201355
           },
           {
             "name": "down",
@@ -60,8 +60,8 @@
             "fuse_norm": false,
             "rpb": 1,
             "bytes": 33554432,
-            "median_us": 196.46400213241577,
-            "gbps": 170.79175643273558
+            "median_us": 150.62400698661804,
+            "gbps": 222.76948191254192
           },
           {
             "name": "lm_head",
@@ -73,11 +73,11 @@
             "fuse_norm": true,
             "rpb": 1,
             "bytes": 525336576,
-            "median_us": 1592.3199653625488,
-            "gbps": 329.9189782377616
+            "median_us": 1567.7440166473389,
+            "gbps": 335.09078677490083
           }
         ],
-        "weighted_us": 10683.136105537415
+        "weighted_us": 9022.464156150818
       },
       "2": {
         "tool": "cudallm_kernelbench",
@@ -98,8 +98,8 @@
             "fuse_norm": true,
             "rpb": 2,
             "bytes": 12582912,
-            "median_us": 60.35200133919716,
-            "gbps": 208.49204203320602
+            "median_us": 49.136001616716385,
+            "gbps": 256.0833520430204
           },
           {
             "name": "wo",
@@ -111,8 +111,8 @@
             "fuse_norm": false,
             "rpb": 2,
             "bytes": 8388608,
-            "median_us": 37.88800165057182,
-            "gbps": 221.40539575998977
+            "median_us": 31.74399957060814,
+            "gbps": 264.2580680906711
           },
           {
             "name": "gate_up",
@@ -124,8 +124,8 @@
             "fuse_norm": true,
             "rpb": 2,
             "bytes": 67108864,
-            "median_us": 220.15999257564545,
-            "gbps": 304.81861493042095
+            "median_us": 208.8959962129593,
+            "gbps": 321.2549077847609
           },
           {
             "name": "down",
@@ -137,8 +137,8 @@
             "fuse_norm": false,
             "rpb": 2,
             "bytes": 33554432,
-            "median_us": 142.33599603176117,
-            "gbps": 235.7410137665569
+            "median_us": 119.80800330638885,
+            "gbps": 280.0683683392183
           },
           {
             "name": "lm_head",
@@ -150,11 +150,11 @@
             "fuse_norm": true,
             "rpb": 2,
             "bytes": 525336576,
-            "median_us": 1571.8400478363037,
-            "gbps": 334.217579405198
+            "median_us": 1559.48805809021,
+            "gbps": 336.86476358359613
           }
         ],
-        "weighted_us": 8943.615913391113
+        "weighted_us": 8112.832069396973
       },
       "4": {
         "tool": "cudallm_kernelbench",
@@ -175,8 +175,8 @@
             "fuse_norm": true,
             "rpb": 4,
             "bytes": 12582912,
-            "median_us": 51.10400170087814,
-            "gbps": 246.22165742812626
+            "median_us": 45.05600035190582,
+            "gbps": 279.2727250914929
           },
           {
             "name": "wo",
@@ -188,8 +188,8 @@
             "fuse_norm": false,
             "rpb": 4,
             "bytes": 8388608,
-            "median_us": 33.67999941110611,
-            "gbps": 249.0679378466326
+            "median_us": 29.71199993044138,
+            "gbps": 282.33064147948744
           },
           {
             "name": "gate_up",
@@ -201,8 +201,8 @@
             "fuse_norm": true,
             "rpb": 4,
             "bytes": 67108864,
-            "median_us": 210.94399690628052,
-            "gbps": 318.1359269959009
+            "median_us": 204.79999482631683,
+            "gbps": 327.68000827789325
           },
           {
             "name": "down",
@@ -214,8 +214,8 @@
             "fuse_norm": false,
             "rpb": 4,
             "bytes": 33554432,
-            "median_us": 125.77600032091141,
-            "gbps": 266.779289485971
+            "median_us": 117.76000261306763,
+            "gbps": 284.9391241120482
           },
           {
             "name": "lm_head",
@@ -227,11 +227,11 @@
             "fuse_norm": true,
             "rpb": 4,
             "bytes": 525336576,
-            "median_us": 1570.8160400390625,
-            "gbps": 334.43545431770366
+            "median_us": 1560.4159832000732,
+            "gbps": 336.66444182572974
           }
         ],
-        "weighted_us": 8314.880013465881
+        "weighted_us": 7917.66394674778
       },
       "8": {
         "tool": "cudallm_kernelbench",
@@ -252,8 +252,8 @@
             "fuse_norm": true,
             "rpb": 8,
             "bytes": 12582912,
-            "median_us": 46.08000069856644,
-            "gbps": 273.0666625270138
+            "median_us": 43.007999658584595,
+            "gbps": 292.5714308939824
           },
           {
             "name": "wo",
@@ -265,8 +265,8 @@
             "fuse_norm": false,
             "rpb": 8,
             "bytes": 8388608,
-            "median_us": 30.912000685930252,
-            "gbps": 271.3705943924269
+            "median_us": 28.831999748945236,
+            "gbps": 290.94783827149837
           },
           {
             "name": "gate_up",
@@ -278,8 +278,8 @@
             "fuse_norm": true,
             "rpb": 8,
             "bytes": 67108864,
-            "median_us": 207.87200331687927,
-            "gbps": 322.83743327233685
+            "median_us": 202.7519941329956,
+            "gbps": 330.9899085677047
           },
           {
             "name": "down",
@@ -291,8 +291,8 @@
             "fuse_norm": false,
             "rpb": 8,
             "bytes": 33554432,
-            "median_us": 116.73600226640701,
-            "gbps": 287.4385909106631
+            "median_us": 110.59200018644333,
+            "gbps": 303.4074068959031
           },
           {
             "name": "lm_head",
@@ -304,11 +304,11 @@
             "fuse_norm": true,
             "rpb": 8,
             "bytes": 525336576,
-            "median_us": 1563.647985458374,
-            "gbps": 335.96856893976735
+            "median_us": 1551.2959957122803,
+            "gbps": 338.6436743548679
           }
         ],
-        "weighted_us": 7989.248096942902
+        "weighted_us": 7714.2398953437805
       }
     },
     "int8": {
@@ -331,8 +331,8 @@
             "fuse_norm": true,
             "rpb": 1,
             "bytes": 6303744,
-            "median_us": 62.463998794555664,
-            "gbps": 100.91803473442421
+            "median_us": 39.68000039458275,
+            "gbps": 158.8645145492642
           },
           {
             "name": "wo",
@@ -344,8 +344,8 @@
             "fuse_norm": false,
             "rpb": 1,
             "bytes": 4202496,
-            "median_us": 37.88800165057182,
-            "gbps": 110.91891408679174
+            "median_us": 24.512000381946564,
+            "gbps": 171.44647252433944
           },
           {
             "name": "gate_up",
@@ -357,8 +357,8 @@
             "fuse_norm": true,
             "rpb": 1,
             "bytes": 33619968,
-            "median_us": 146.43199741840363,
-            "gbps": 229.59440964215537
+            "median_us": 120.83200365304947,
+            "gbps": 278.23727972379385
           },
           {
             "name": "down",
@@ -370,8 +370,8 @@
             "fuse_norm": false,
             "rpb": 1,
             "bytes": 16785408,
-            "median_us": 166.81599617004395,
-            "gbps": 100.62229273798053
+            "median_us": 105.34399747848511,
+            "gbps": 159.33900745914036
           },
           {
             "name": "lm_head",
@@ -383,11 +383,11 @@
             "fuse_norm": true,
             "rpb": 1,
             "bytes": 263181312,
-            "median_us": 852.3679971694946,
-            "gbps": 308.7648913074642
+            "median_us": 807.9360127449036,
+            "gbps": 325.74524200977345
           }
         ],
-        "weighted_us": 7469.967901706696
+        "weighted_us": 5453.824043273926
       },
       "2": {
         "tool": "cudallm_kernelbench",
@@ -408,8 +408,8 @@
             "fuse_norm": true,
             "rpb": 2,
             "bytes": 6303744,
-            "median_us": 44.03200000524521,
-            "gbps": 143.16279068062047
+            "median_us": 30.719999223947525,
+            "gbps": 205.20000518378814
           },
           {
             "name": "wo",
@@ -421,8 +421,8 @@
             "fuse_norm": false,
             "rpb": 2,
             "bytes": 4202496,
-            "median_us": 28.416000306606293,
-            "gbps": 147.8918902961506
+            "median_us": 20.35200037062168,
+            "gbps": 206.49056227742338
           },
           {
             "name": "gate_up",
@@ -433,160 +433,6 @@
             "epilogue": "swiglu",
             "fuse_norm": true,
             "rpb": 2,
-            "bytes": 33619968,
-            "median_us": 124.92799758911133,
-            "gbps": 269.1147592917979
-          },
-          {
-            "name": "down",
-            "rows": 2048,
-            "cols": 8192,
-            "impl": "opt",
-            "wtype": "int8",
-            "epilogue": "add",
-            "fuse_norm": false,
-            "rpb": 2,
-            "bytes": 16785408,
-            "median_us": 100.35199671983719,
-            "gbps": 167.26531158977852
-          },
-          {
-            "name": "lm_head",
-            "rows": 128256,
-            "cols": 2048,
-            "impl": "opt",
-            "wtype": "int8",
-            "epilogue": "store",
-            "fuse_norm": true,
-            "rpb": 2,
-            "bytes": 263181312,
-            "median_us": 840.6080007553101,
-            "gbps": 313.08447191024135
-          }
-        ],
-        "weighted_us": 5604.25591468811
-      },
-      "4": {
-        "tool": "cudallm_kernelbench",
-        "op": "shapes",
-        "gpu_name": "NVIDIA GeForce RTX 3060",
-        "iters": 200,
-        "impl": "opt",
-        "wtype": "int8",
-        "rpb": 4,
-        "results": [
-          {
-            "name": "qkv",
-            "rows": 3072,
-            "cols": 2048,
-            "impl": "opt",
-            "wtype": "int8",
-            "epilogue": "store",
-            "fuse_norm": true,
-            "rpb": 4,
-            "bytes": 6303744,
-            "median_us": 34.81600061058998,
-            "gbps": 181.05882035406992
-          },
-          {
-            "name": "wo",
-            "rows": 2048,
-            "cols": 2048,
-            "impl": "opt",
-            "wtype": "int8",
-            "epilogue": "add",
-            "fuse_norm": false,
-            "rpb": 4,
-            "bytes": 4202496,
-            "median_us": 23.32800067961216,
-            "gbps": 180.1481428999113
-          },
-          {
-            "name": "gate_up",
-            "rows": 16384,
-            "cols": 2048,
-            "impl": "opt",
-            "wtype": "int8",
-            "epilogue": "swiglu",
-            "fuse_norm": true,
-            "rpb": 4,
-            "bytes": 33619968,
-            "median_us": 115.7120019197464,
-            "gbps": 290.5486677459575
-          },
-          {
-            "name": "down",
-            "rows": 2048,
-            "cols": 8192,
-            "impl": "opt",
-            "wtype": "int8",
-            "epilogue": "add",
-            "fuse_norm": false,
-            "rpb": 4,
-            "bytes": 16785408,
-            "median_us": 78.84799689054489,
-            "gbps": 212.8831252783903
-          },
-          {
-            "name": "lm_head",
-            "rows": 128256,
-            "cols": 2048,
-            "impl": "opt",
-            "wtype": "int8",
-            "epilogue": "store",
-            "fuse_norm": true,
-            "rpb": 4,
-            "bytes": 263181312,
-            "median_us": 816.9919848442078,
-            "gbps": 322.13450912885764
-          }
-        ],
-        "weighted_us": 4860.255986452103
-      },
-      "8": {
-        "tool": "cudallm_kernelbench",
-        "op": "shapes",
-        "gpu_name": "NVIDIA GeForce RTX 3060",
-        "iters": 200,
-        "impl": "opt",
-        "wtype": "int8",
-        "rpb": 8,
-        "results": [
-          {
-            "name": "qkv",
-            "rows": 3072,
-            "cols": 2048,
-            "impl": "opt",
-            "wtype": "int8",
-            "epilogue": "store",
-            "fuse_norm": true,
-            "rpb": 8,
-            "bytes": 6303744,
-            "median_us": 29.664000496268272,
-            "gbps": 212.50485081380072
-          },
-          {
-            "name": "wo",
-            "rows": 2048,
-            "cols": 2048,
-            "impl": "opt",
-            "wtype": "int8",
-            "epilogue": "add",
-            "fuse_norm": false,
-            "rpb": 8,
-            "bytes": 4202496,
-            "median_us": 21.503999829292297,
-            "gbps": 195.42857297996477
-          },
-          {
-            "name": "gate_up",
-            "rows": 16384,
-            "cols": 2048,
-            "impl": "opt",
-            "wtype": "int8",
-            "epilogue": "swiglu",
-            "fuse_norm": true,
-            "rpb": 8,
             "bytes": 33619968,
             "median_us": 111.61600053310394,
             "gbps": 301.2110077356582
@@ -599,10 +445,164 @@
             "wtype": "int8",
             "epilogue": "add",
             "fuse_norm": false,
+            "rpb": 2,
+            "bytes": 16785408,
+            "median_us": 71.52000069618225,
+            "gbps": 234.6952997288772
+          },
+          {
+            "name": "lm_head",
+            "rows": 128256,
+            "cols": 2048,
+            "impl": "opt",
+            "wtype": "int8",
+            "epilogue": "store",
+            "fuse_norm": true,
+            "rpb": 2,
+            "bytes": 263181312,
+            "median_us": 796.671986579895,
+            "gbps": 330.35090530776006
+          }
+        ],
+        "weighted_us": 4543.999999761581
+      },
+      "4": {
+        "tool": "cudallm_kernelbench",
+        "op": "shapes",
+        "gpu_name": "NVIDIA GeForce RTX 3060",
+        "iters": 200,
+        "impl": "opt",
+        "wtype": "int8",
+        "rpb": 4,
+        "results": [
+          {
+            "name": "qkv",
+            "rows": 3072,
+            "cols": 2048,
+            "impl": "opt",
+            "wtype": "int8",
+            "epilogue": "store",
+            "fuse_norm": true,
+            "rpb": 4,
+            "bytes": 6303744,
+            "median_us": 26.623999699950218,
+            "gbps": 236.76923343759603
+          },
+          {
+            "name": "wo",
+            "rows": 2048,
+            "cols": 2048,
+            "impl": "opt",
+            "wtype": "int8",
+            "epilogue": "add",
+            "fuse_norm": false,
+            "rpb": 4,
+            "bytes": 4202496,
+            "median_us": 18.33599992096424,
+            "gbps": 229.1937182654068
+          },
+          {
+            "name": "gate_up",
+            "rows": 16384,
+            "cols": 2048,
+            "impl": "opt",
+            "wtype": "int8",
+            "epilogue": "swiglu",
+            "fuse_norm": true,
+            "rpb": 4,
+            "bytes": 33619968,
+            "median_us": 107.32799768447876,
+            "gbps": 313.2450872589227
+          },
+          {
+            "name": "down",
+            "rows": 2048,
+            "cols": 8192,
+            "impl": "opt",
+            "wtype": "int8",
+            "epilogue": "add",
+            "fuse_norm": false,
+            "rpb": 4,
+            "bytes": 16785408,
+            "median_us": 63.29599767923355,
+            "gbps": 265.1890896019013
+          },
+          {
+            "name": "lm_head",
+            "rows": 128256,
+            "cols": 2048,
+            "impl": "opt",
+            "wtype": "int8",
+            "epilogue": "store",
+            "fuse_norm": true,
+            "rpb": 4,
+            "bytes": 263181312,
+            "median_us": 792.576014995575,
+            "gbps": 332.0581332523284
+          }
+        ],
+        "weighted_us": 4241.919934749603
+      },
+      "8": {
+        "tool": "cudallm_kernelbench",
+        "op": "shapes",
+        "gpu_name": "NVIDIA GeForce RTX 3060",
+        "iters": 200,
+        "impl": "opt",
+        "wtype": "int8",
+        "rpb": 8,
+        "results": [
+          {
+            "name": "qkv",
+            "rows": 3072,
+            "cols": 2048,
+            "impl": "opt",
+            "wtype": "int8",
+            "epilogue": "store",
+            "fuse_norm": true,
+            "rpb": 8,
+            "bytes": 6303744,
+            "median_us": 24.752000346779823,
+            "gbps": 254.67614381397266
+          },
+          {
+            "name": "wo",
+            "rows": 2048,
+            "cols": 2048,
+            "impl": "opt",
+            "wtype": "int8",
+            "epilogue": "add",
+            "fuse_norm": false,
+            "rpb": 8,
+            "bytes": 4202496,
+            "median_us": 17.40800030529499,
+            "gbps": 241.41176047209322
+          },
+          {
+            "name": "gate_up",
+            "rows": 16384,
+            "cols": 2048,
+            "impl": "opt",
+            "wtype": "int8",
+            "epilogue": "swiglu",
+            "fuse_norm": true,
+            "rpb": 8,
+            "bytes": 33619968,
+            "median_us": 105.47199845314026,
+            "gbps": 318.75728622831474
+          },
+          {
+            "name": "down",
+            "rows": 2048,
+            "cols": 8192,
+            "impl": "opt",
+            "wtype": "int8",
+            "epilogue": "add",
+            "fuse_norm": false,
             "rpb": 8,
             "bytes": 16785408,
-            "median_us": 72.7040022611618,
-            "gbps": 230.87323225624817
+            "median_us": 60.19200012087822,
+            "gbps": 278.8644332517837
           },
           {
             "name": "lm_head",
@@ -614,11 +614,11 @@
             "fuse_norm": true,
             "rpb": 8,
             "bytes": 263181312,
-            "median_us": 799.6799945831299,
-            "gbps": 329.10828554263804
+            "median_us": 787.4559760093689,
+            "gbps": 334.2171753318039
           }
         ],
-        "weighted_us": 4567.488044500351
+        "weighted_us": 4112.639963626862
       }
     },
     "int4": {
@@ -641,8 +641,8 @@
             "fuse_norm": true,
             "rpb": 1,
             "bytes": 3244032,
-            "median_us": 72.7040022611618,
-            "gbps": 44.61971692214459
+            "median_us": 34.81600061058998,
+            "gbps": 93.17646895414126
           },
           {
             "name": "wo",
@@ -654,8 +654,8 @@
             "fuse_norm": false,
             "rpb": 1,
             "bytes": 2162688,
-            "median_us": 33.79200026392937,
-            "gbps": 63.99999950013378
+            "median_us": 20.479999482631683,
+            "gbps": 105.60000266768046
           },
           {
             "name": "gate_up",
@@ -667,8 +667,8 @@
             "fuse_norm": true,
             "rpb": 1,
             "bytes": 17301504,
-            "median_us": 206.84799551963806,
-            "gbps": 83.64356616816913
+            "median_us": 95.23200243711472,
+            "gbps": 181.6774147054698
           },
           {
             "name": "down",
@@ -680,8 +680,8 @@
             "fuse_norm": false,
             "rpb": 1,
             "bytes": 8650752,
-            "median_us": 169.98399794101715,
-            "gbps": 50.8915668814998
+            "median_us": 90.11200070381165,
+            "gbps": 95.99999925020067
           },
           {
             "name": "lm_head",
@@ -693,11 +693,11 @@
             "fuse_norm": true,
             "rpb": 1,
             "bytes": 135438336,
-            "median_us": 1328.1279802322388,
-            "gbps": 101.97687121712246
+            "median_us": 626.6880035400391,
+            "gbps": 216.11764583801684
           }
         ],
-        "weighted_us": 9061.37591600418
+        "weighted_us": 4476.9280552864075
       },
       "2": {
         "tool": "cudallm_kernelbench",
@@ -718,8 +718,8 @@
             "fuse_norm": true,
             "rpb": 2,
             "bytes": 3244032,
-            "median_us": 53.247999399900436,
-            "gbps": 60.92307760967383
+            "median_us": 22.52800017595291,
+            "gbps": 143.999998875301
           },
           {
             "name": "wo",
@@ -731,8 +731,8 @@
             "fuse_norm": false,
             "rpb": 2,
             "bytes": 2162688,
-            "median_us": 28.575999662280083,
-            "gbps": 75.68197177909117
+            "median_us": 14.336000196635723,
+            "gbps": 150.8571407879532
           },
           {
             "name": "gate_up",
@@ -744,8 +744,8 @@
             "fuse_norm": true,
             "rpb": 2,
             "bytes": 17301504,
-            "median_us": 183.29599499702454,
-            "gbps": 94.3910640288723
+            "median_us": 65.5359998345375,
+            "gbps": 264.0000006665359
           },
           {
             "name": "down",
@@ -757,8 +757,8 @@
             "fuse_norm": false,
             "rpb": 2,
             "bytes": 8650752,
-            "median_us": 126.97599828243256,
-            "gbps": 68.12903317962615
+            "median_us": 54.27199974656105,
+            "gbps": 159.39622715944157
           },
           {
             "name": "lm_head",
@@ -770,11 +770,11 @@
             "fuse_norm": true,
             "rpb": 2,
             "bytes": 135438336,
-            "median_us": 1266.6879892349243,
-            "gbps": 106.92320220214953
+            "median_us": 459.77601408958435,
+            "gbps": 294.57460121791115
           }
         ],
-        "weighted_us": 7540.223866701126
+        "weighted_us": 2966.5280133485794
       },
       "4": {
         "tool": "cudallm_kernelbench",
@@ -795,8 +795,8 @@
             "fuse_norm": true,
             "rpb": 4,
             "bytes": 3244032,
-            "median_us": 44.03200000524521,
-            "gbps": 73.67441859587488
+            "median_us": 18.239999189972878,
+            "gbps": 177.85263947727313
           },
           {
             "name": "wo",
@@ -808,8 +808,8 @@
             "fuse_norm": false,
             "rpb": 4,
             "bytes": 2162688,
-            "median_us": 26.623999699950218,
-            "gbps": 81.23077014623178
+            "median_us": 12.28800043463707,
+            "gbps": 175.99999377472972
           },
           {
             "name": "gate_up",
@@ -821,8 +821,8 @@
             "fuse_norm": true,
             "rpb": 4,
             "bytes": 17301504,
-            "median_us": 176.04800313711166,
-            "gbps": 98.27719537679194
+            "median_us": 60.095999389886856,
+            "gbps": 287.8977665011017
           },
           {
             "name": "down",
@@ -834,8 +834,8 @@
             "fuse_norm": false,
             "rpb": 4,
             "bytes": 8650752,
-            "median_us": 109.56799983978271,
-            "gbps": 78.95327114348787
+            "median_us": 41.280001401901245,
+            "gbps": 209.5627835807576
           },
           {
             "name": "lm_head",
@@ -847,11 +847,11 @@
             "fuse_norm": true,
             "rpb": 4,
             "bytes": 135438336,
-            "median_us": 1263.424038887024,
-            "gbps": 107.19942935335503
+            "median_us": 430.07999658584595,
+            "gbps": 314.9142882142064
           }
         ],
-        "weighted_us": 6963.776081800461
+        "weighted_us": 2540.5440032482147
       },
       "8": {
         "tool": "cudallm_kernelbench",
@@ -872,8 +872,8 @@
             "fuse_norm": true,
             "rpb": 8,
             "bytes": 3244032,
-            "median_us": 39.664000272750854,
-            "gbps": 81.78781710599796
+            "median_us": 15.359999611973763,
+            "gbps": 211.2000053353609
           },
           {
             "name": "wo",
@@ -885,8 +885,8 @@
             "fuse_norm": false,
             "rpb": 8,
             "bytes": 2162688,
-            "median_us": 26.623999699950218,
-            "gbps": 81.23077014623178
+            "median_us": 11.264000087976456,
+            "gbps": 191.99999850040135
           },
           {
             "name": "gate_up",
@@ -898,8 +898,8 @@
             "fuse_norm": true,
             "rpb": 8,
             "bytes": 17301504,
-            "median_us": 169.98399794101715,
-            "gbps": 101.7831337629996
+            "median_us": 58.111999183893204,
+            "gbps": 297.7268764278794
           },
           {
             "name": "down",
@@ -911,8 +911,8 @@
             "fuse_norm": false,
             "rpb": 8,
             "bytes": 8650752,
-            "median_us": 107.51999914646149,
-            "gbps": 80.45714349584516
+            "median_us": 36.57599911093712,
+            "gbps": 236.51444144455957
           },
           {
             "name": "lm_head",
@@ -924,11 +924,11 @@
             "fuse_norm": true,
             "rpb": 8,
             "bytes": 135438336,
-            "median_us": 1257.472038269043,
-            "gbps": 107.70683711300325
+            "median_us": 420.81600427627563,
+            "gbps": 321.8469227018313
           }
         ],
-        "weighted_us": 6758.143991231918
+        "weighted_us": 2361.8079721927643
       }
     }
   },
@@ -939,37 +939,37 @@
   },
   "weighted_us": {
     "bf16": {
-      "1": 10683.136105537415,
-      "2": 8943.615913391113,
-      "4": 8314.880013465881,
-      "8": 7989.248096942902
+      "1": 9022.464156150818,
+      "2": 8112.832069396973,
+      "4": 7917.66394674778,
+      "8": 7714.2398953437805
     },
     "int8": {
-      "1": 7469.967901706696,
-      "2": 5604.25591468811,
-      "4": 4860.255986452103,
-      "8": 4567.488044500351
+      "1": 5453.824043273926,
+      "2": 4543.999999761581,
+      "4": 4241.919934749603,
+      "8": 4112.639963626862
     },
     "int4": {
-      "1": 9061.37591600418,
-      "2": 7540.223866701126,
-      "4": 6963.776081800461,
-      "8": 6758.143991231918
+      "1": 4476.9280552864075,
+      "2": 2966.5280133485794,
+      "4": 2540.5440032482147,
+      "8": 2361.8079721927643
     }
   },
-  "git_commit": "e0b8066",
+  "git_commit": "4c7f605",
   "gpu_before": {
     "name": "NVIDIA GeForce RTX 3060",
     "clocks_sm_mhz": 210.0,
     "clocks_mem_mhz": 405.0,
-    "temperature_c": 52.0,
-    "power_draw_w": 21.01
+    "temperature_c": 58.0,
+    "power_draw_w": 21.79
   },
   "gpu_after": {
     "name": "NVIDIA GeForce RTX 3060",
-    "clocks_sm_mhz": 1965.0,
+    "clocks_sm_mhz": 1942.0,
     "clocks_mem_mhz": 7501.0,
-    "temperature_c": 56.0,
-    "power_draw_w": 76.87
+    "temperature_c": 66.0,
+    "power_draw_w": 74.92
   }
 }
