@@ -3,6 +3,8 @@ import numpy as np
 import pytest
 
 from cudallm import engine as E
+from cudallm.quantize import (dequantize_int4_groups, dequantize_int8_rows, quantize_int4_groups,
+                              quantize_int8_rows)
 
 pytestmark = pytest.mark.kernels
 
@@ -45,6 +47,52 @@ def test_matvec_naive_bf16_store():
     x = rng.standard_normal(cols).astype(np.float32)
     y = E.kernel_matvec("naive", "bf16", "store", 0, 0, bits, None, x, None, 1e-5, None, rows, cols)
     ref = bf16_bits_to_f64(bits) @ x.astype(np.float64)
+    assert np.allclose(y, ref, rtol=1e-4, atol=1e-4)
+
+
+def _matvec_operands(wtype: str, rows: int, cols: int, seed: int):
+    """Returns (stored weight, scales or None, exact dequantized fp32 weight as float64)."""
+    rng = np.random.default_rng(seed)
+    w = rng.normal(0, 0.02, size=(rows, cols)).astype(np.float32)
+    if wtype == "bf16":
+        bits = f32_to_bf16_bits(w)
+        return bits, None, bf16_bits_to_f64(bits)
+    if wtype == "int8":
+        q, scales = quantize_int8_rows(w)
+        return q, scales, dequantize_int8_rows(q, scales).astype(np.float64)
+    packed, scales = quantize_int4_groups(w, 128)
+    return packed, scales, dequantize_int4_groups(packed, scales).astype(np.float64)
+
+
+@pytest.mark.parametrize("shape", [(1024, 2048), (2048, 8192)], ids=lambda s: f"{s[0]}x{s[1]}")
+@pytest.mark.parametrize("rpb", [1, 2, 4, 8])
+@pytest.mark.parametrize("fuse_norm", [0, 1])
+@pytest.mark.parametrize("epilogue", ["store", "add", "swiglu"])
+@pytest.mark.parametrize("wtype", ["bf16", "int8", "int4"])
+def test_matvec_opt(wtype, epilogue, fuse_norm, rpb, shape):
+    rows, cols = shape
+    eps = 1e-5
+    w, scales, w64 = _matvec_operands(wtype, rows, cols, seed=20 + rows + cols)
+    rng = np.random.default_rng(21 + rows)
+    x = rng.standard_normal(cols).astype(np.float32)
+    norm_w = rng.uniform(0.5, 1.5, cols).astype(np.float32)
+    out_rows = rows // 2 if epilogue == "swiglu" else rows
+    y_init = rng.standard_normal(out_rows).astype(np.float32) if epilogue == "add" else None
+
+    y = E.kernel_matvec("opt", wtype, epilogue, fuse_norm, rpb, w, scales, x, norm_w if fuse_norm else None, eps,
+                        y_init, rows, cols)
+
+    x64 = x.astype(np.float64)
+    if fuse_norm:
+        x64 = x64 / np.sqrt(np.mean(x64 * x64) + eps) * norm_w.astype(np.float64)
+    d = w64 @ x64
+    if epilogue == "swiglu":
+        g, u = d[:out_rows], d[out_rows:]
+        ref = g / (1 + np.exp(-g)) * u
+    elif epilogue == "add":
+        ref = y_init.astype(np.float64) + d
+    else:
+        ref = d
     assert np.allclose(y, ref, rtol=1e-4, atol=1e-4)
 
 
