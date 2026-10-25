@@ -17,6 +17,10 @@ ENABLED_CONFIGS = [
     ("bf16", "opt", "opt", 1, 0),
     ("bf16", "opt", "opt", 0, 1),
     ("bf16", "opt", "opt", 1, 1),
+    ("int8", "opt", "opt", 1, 1),
+    ("int8", "opt", "opt", 1, 0),
+    ("int4", "opt", "opt", 1, 1),
+    ("int4", "opt", "opt", 1, 0),
 ]
 
 N_DETERMINISM = 4
