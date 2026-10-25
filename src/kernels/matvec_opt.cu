@@ -21,6 +21,22 @@ int default_rpb(WeightType w) {
 
 namespace {
 
+// Integer -> float without I2F: 0x4B000000 is 2^23 as fp32, so OR-ing a byte v into its mantissa
+// gives 2^23 + v exactly.
+constexpr uint32_t kMagic = 0x4B000000u;
+constexpr float kMagicI8 = 8388608.f + 128.f;  // int8 bytes are biased by +128 (sign bit flipped)
+constexpr float kMagicI4 = 8388608.f + 8.f;    // int4 nibbles are stored as q+8
+
+// Shared-memory layout of the staged input: float4 slot L is stored at L ^ ((L >> 3) & 7), a
+// permutation inside each 128-byte block. Lanes read 8, 16 or 32 consecutive floats (bf16/int8/int4),
+// so unswizzled their float4 reads are 32/64/128 bytes apart and collide on the same banks; with
+// the swizzle the 8 lanes of each quarter-warp phase hit 8 different bank groups.
+__device__ __forceinline__ int xs_slot(int f4) { return f4 ^ ((f4 >> 3) & 7); }
+__device__ __forceinline__ float4 load_xs4(const float* xs, int col) {
+    return reinterpret_cast<const float4*>(xs)[xs_slot(col >> 2)];
+}
+__device__ __forceinline__ int xs_index(int j) { return (xs_slot(j >> 2) << 2) | (j & 3); }
+
 // Dot product of weight row `r` with the staged input xs, for one warp. Each lane issues
 // 128-bit loads; per iteration the warp covers 256 (bf16), 512 (int8) or 1024 (int4) columns.
 // Quantized rows apply their scales here (int8: once after the loop; int4: per 128-col group).
@@ -34,8 +50,8 @@ __device__ __forceinline__ float row_dot(const MatvecArgs& a, int r, const float
         for (int it = 0; it < iters; ++it) {
             const uint4 v = __ldcs(row + it * 32 + lane);
             const int base = it * 256 + lane * 8;
-            const float4 x0 = *reinterpret_cast<const float4*>(xs + base);
-            const float4 x1 = *reinterpret_cast<const float4*>(xs + base + 4);
+            const float4 x0 = load_xs4(xs, base);
+            const float4 x1 = load_xs4(xs, base + 4);
             float lo, hi;
             unpack_bf16x2(v.x, lo, hi);
             acc += lo * x0.x + hi * x0.y;
@@ -56,12 +72,14 @@ __device__ __forceinline__ float row_dot(const MatvecArgs& a, int r, const float
             const uint32_t words[4] = {v.x, v.y, v.z, v.w};
 #pragma unroll
             for (int k = 0; k < 4; ++k) {
-                const float4 x = *reinterpret_cast<const float4*>(xs + base + 4 * k);
-                const uint32_t w = words[k];
-                acc += static_cast<float>(static_cast<int8_t>(w & 0xff)) * x.x;
-                acc += static_cast<float>(static_cast<int8_t>((w >> 8) & 0xff)) * x.y;
-                acc += static_cast<float>(static_cast<int8_t>((w >> 16) & 0xff)) * x.z;
-                acc += static_cast<float>(static_cast<int8_t>(w >> 24)) * x.w;
+                const float4 x = load_xs4(xs, base + 4 * k);
+                // Biased byte (q+128) placed in the mantissa of 2^23, minus 2^23+128, gives q exactly
+                // with one PRMT + one FADD instead of a quarter-rate I2F.
+                const uint32_t w = words[k] ^ 0x80808080u;
+                acc += (__uint_as_float(__byte_perm(w, kMagic, 0x7540)) - kMagicI8) * x.x;
+                acc += (__uint_as_float(__byte_perm(w, kMagic, 0x7541)) - kMagicI8) * x.y;
+                acc += (__uint_as_float(__byte_perm(w, kMagic, 0x7542)) - kMagicI8) * x.z;
+                acc += (__uint_as_float(__byte_perm(w, kMagic, 0x7543)) - kMagicI8) * x.w;
             }
         }
         acc *= static_cast<const float*>(a.scales)[r];
@@ -77,18 +95,21 @@ __device__ __forceinline__ float row_dot(const MatvecArgs& a, int r, const float
             float part = 0.f;
 #pragma unroll
             for (int k = 0; k < 4; ++k) {
-                const uint32_t w = words[k];
-                const float4 x0 = *reinterpret_cast<const float4*>(xs + base + 8 * k);
-                const float4 x1 = *reinterpret_cast<const float4*>(xs + base + 8 * k + 4);
+                const float4 x0 = load_xs4(xs, base + 8 * k);
+                const float4 x1 = load_xs4(xs, base + 8 * k + 4);
                 // Byte b holds element 2b in its low nibble and 2b+1 in its high nibble, stored as q+8.
-                part += static_cast<float>(static_cast<int>(w & 0xf) - 8) * x0.x;
-                part += static_cast<float>(static_cast<int>((w >> 4) & 0xf) - 8) * x0.y;
-                part += static_cast<float>(static_cast<int>((w >> 8) & 0xf) - 8) * x0.z;
-                part += static_cast<float>(static_cast<int>((w >> 12) & 0xf) - 8) * x0.w;
-                part += static_cast<float>(static_cast<int>((w >> 16) & 0xf) - 8) * x1.x;
-                part += static_cast<float>(static_cast<int>((w >> 20) & 0xf) - 8) * x1.y;
-                part += static_cast<float>(static_cast<int>((w >> 24) & 0xf) - 8) * x1.z;
-                part += static_cast<float>(static_cast<int>(w >> 28) - 8) * x1.w;
+                // lo/hi hold the even/odd elements one per byte; each byte goes into the mantissa of
+                // 2^23 (PRMT) and 2^23+8 is subtracted, giving q exactly without I2F.
+                const uint32_t lo = words[k] & 0x0F0F0F0Fu;
+                const uint32_t hi = (words[k] >> 4) & 0x0F0F0F0Fu;
+                part += (__uint_as_float(__byte_perm(lo, kMagic, 0x7540)) - kMagicI4) * x0.x;
+                part += (__uint_as_float(__byte_perm(hi, kMagic, 0x7540)) - kMagicI4) * x0.y;
+                part += (__uint_as_float(__byte_perm(lo, kMagic, 0x7541)) - kMagicI4) * x0.z;
+                part += (__uint_as_float(__byte_perm(hi, kMagic, 0x7541)) - kMagicI4) * x0.w;
+                part += (__uint_as_float(__byte_perm(lo, kMagic, 0x7542)) - kMagicI4) * x1.x;
+                part += (__uint_as_float(__byte_perm(hi, kMagic, 0x7542)) - kMagicI4) * x1.y;
+                part += (__uint_as_float(__byte_perm(lo, kMagic, 0x7543)) - kMagicI4) * x1.z;
+                part += (__uint_as_float(__byte_perm(hi, kMagic, 0x7543)) - kMagicI4) * x1.w;
             }
             acc += part * __half2float(scales[base / 128]);
         }
@@ -113,9 +134,9 @@ __global__ void __launch_bounds__(RPB * 32) matvec_opt_kernel(MatvecArgs a) {
         for (int j = tid; j < a.cols; j += blockDim.x) ss += a.x[j] * a.x[j];
         ss = block_reduce_sum(ss, red);
         const float inv = rsqrtf(ss / static_cast<float>(a.cols) + a.eps);
-        for (int j = tid; j < a.cols; j += blockDim.x) xs[j] = a.x[j] * inv * a.norm_w[j];
+        for (int j = tid; j < a.cols; j += blockDim.x) xs[xs_index(j)] = a.x[j] * inv * a.norm_w[j];
     } else {
-        for (int j = tid; j < a.cols; j += blockDim.x) xs[j] = a.x[j];
+        for (int j = tid; j < a.cols; j += blockDim.x) xs[xs_index(j)] = a.x[j];
     }
     __syncthreads();
 
