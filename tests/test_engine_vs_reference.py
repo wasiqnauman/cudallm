@@ -13,6 +13,7 @@ pytestmark = pytest.mark.model
 ENABLED_CONFIGS = [
     ("bf16", "naive", "naive", 0, 0),
     ("bf16", "opt", "naive", 0, 0),
+    ("bf16", "opt", "opt", 0, 0),
 ]
 
 N_DETERMINISM = 4

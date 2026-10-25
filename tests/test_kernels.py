@@ -189,7 +189,7 @@ def attn_data():
 
 
 @pytest.mark.parametrize("ctx", [1, 7, 128, 129, 1000, 4096])
-@pytest.mark.parametrize("impl", ["naive"])
+@pytest.mark.parametrize("impl", ["naive", "opt"])
 def test_attention(impl, ctx, attn_data):
     q, k, v = attn_data
     out = E.kernel_attention(impl, q, k, v, ctx, NH, NKV, HD, MAX_SEQ)
