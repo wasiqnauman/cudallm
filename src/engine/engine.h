@@ -35,9 +35,33 @@ private:
     void enqueue_forward(bool debug, float* residuals_out); // enqueues one full decode step on stream_
     void launch_linear(const Linear& L, const float* x, float* y, Epilogue ep, const float* norm_w);
 
+    void free_all() noexcept;
+
     std::unique_ptr<Weights> weights_;
     EngineOptions opts_;
+    int max_seq_ = 0;
     int host_pos_ = 0;
+    cudaStream_t stream_ = nullptr;
+    cudaGraph_t graph_ = nullptr;
+    cudaGraphExec_t graph_exec_ = nullptr;
+
+    // Device buffers (DESIGN.md §9.4).
+    float* x_ = nullptr;
+    float* xb_ = nullptr;
+    float* qkv_ = nullptr;
+    float* att_ = nullptr;
+    float* tmp_ = nullptr;
+    float* gu_ = nullptr;
+    float* act_ = nullptr;
+    float* logits_ = nullptr;
+    __half* k_cache_ = nullptr;
+    __half* v_cache_ = nullptr;
+    float* attn_part_o_ = nullptr;
+    float* attn_part_ml_ = nullptr;
+    float* argmax_part_v_ = nullptr;
+    int* argmax_part_i_ = nullptr;
+    int* d_token_ = nullptr;
+    int* d_pos_ = nullptr;
 };
 
 }  // namespace cudallm
