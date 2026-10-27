@@ -1,4 +1,4 @@
-"""Pure-PyTorch CPU reference that reads a .cudallm file (DESIGN.md §12.5).
+"""Pure-PyTorch CPU reference that reads a .cudallm file.
 
 Weights stay in their stored form and are materialized to fp32 per matmul, which mirrors the
 engine's math while keeping the resident set at roughly the file size.

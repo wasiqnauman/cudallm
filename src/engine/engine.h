@@ -45,7 +45,7 @@ private:
     cudaGraph_t graph_ = nullptr;
     cudaGraphExec_t graph_exec_ = nullptr;
 
-    // Device buffers (DESIGN.md §9.4).
+    // Device buffers.
     float* x_ = nullptr;
     float* xb_ = nullptr;
     float* qkv_ = nullptr;

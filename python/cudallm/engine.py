@@ -1,4 +1,4 @@
-"""ctypes wrapper around build/libcudallm.so (DESIGN.md §12.7)."""
+"""ctypes wrapper around build/libcudallm.so."""
 import ctypes
 import functools
 from ctypes import POINTER, c_char_p, c_float, c_int, c_ulonglong, c_ushort, c_void_p

@@ -11,7 +11,7 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()
 
-# No --use_fast_math anywhere (DESIGN.md §8).
+# No --use_fast_math anywhere.
 add_compile_options($<$<COMPILE_LANGUAGE:CUDA>:-lineinfo>)
 add_compile_options($<$<COMPILE_LANGUAGE:CUDA>:--expt-relaxed-constexpr>)
 set(CMAKE_CUDA_FLAGS_RELEASE "-O3")

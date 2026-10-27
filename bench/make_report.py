@@ -1,4 +1,4 @@
-"""Generate docs/RESULTS.md and docs/img/*.png from results/ (DESIGN.md §15.8).
+"""Generate docs/RESULTS.md and docs/img/*.png from results/.
 
 Every number in the report is read from a results/ file; missing inputs are a hard error.
 """
@@ -192,21 +192,6 @@ def main() -> None:
            "", "Note: cudallm int8 and llama.cpp q8_0 are not the same format — q8_0 uses one scale per 32-element "
            "block, cudallm int8 one scale per output row — so that pair is an approximate comparison.",
            "", "![compare](img/compare.png)", ""]
-
-    # 8. Provenance
-    prov = [("bandwidth.json", bw), ("sweep_matvec.json", sweep), ("compare/hf_bf16.json", hf),
-            ("compare/hf_bf16_tg.json", hf_tg), ("ppl/hf_bf16.json", ppl_hf)]
-    prov += [(f"decode/ablation/{n}.json", abl[n]) for n in ABLATION]
-    prov += [(f"decode/quant/Q_{d}.json", quant[d]) for d in DTYPES]
-    prov += [(f"decode/tg/tg_{d}.json", tg[d]) for d in DTYPES]
-    prov += [(f"decode/context/ctx_opt_{c}.json", ctx_opt[c]) for c in CONTEXTS]
-    prov += [(f"decode/context/ctx_naiveattn_{c}.json", ctx_naive[c]) for c in CONTEXTS]
-    prov += [(f"ppl/engine_{d}.json", ppl[d]) for d in DTYPES]
-    commits = sorted({d.get("git_commit", "MISSING") for _, d in prov})
-    md += ["## 8. Provenance", "",
-           f"Distinct git commits across the cudallm/HF result files: {', '.join(commits)}. "
-           f"llama.cpp: {llama_commit}.", "", table(["File (results/)", "git_commit"],
-                                                    [[p, d.get("git_commit", "MISSING")] for p, d in prov]), ""]
 
     DOCS.mkdir(exist_ok=True)
     (DOCS / "RESULTS.md").write_text("\n".join(md))

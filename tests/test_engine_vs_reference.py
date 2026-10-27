@@ -1,7 +1,4 @@
-"""Engine vs ReferenceModel on the 32 golden tokens (DESIGN.md §14.7).
-
-After Phase 1 the only allowed change to this file is appending to ENABLED_CONFIGS.
-"""
+"""Engine vs ReferenceModel on the 32 golden tokens."""
 import numpy as np
 import pytest
 

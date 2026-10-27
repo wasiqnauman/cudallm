@@ -1,4 +1,4 @@
-"""End-to-end decode benchmark suites around build/cudallm_bench (DESIGN.md §15.3).
+"""End-to-end decode benchmark suites around build/cudallm_bench.
 
 Usage: python bench/bench_decode.py --suite {ablation,quant,context,tg,all} [--names A0_naive,...]
 """

@@ -1,4 +1,4 @@
-"""Generate golden HF outputs for the 32-token golden prompt (DESIGN.md §12.6).
+"""Generate golden HF outputs for the 32-token golden prompt.
 
 Usage: python -m cudallm.golden --hf-dir DIR --out tests/.cache/golden_hf.npz
 """

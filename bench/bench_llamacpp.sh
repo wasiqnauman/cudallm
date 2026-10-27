@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
-# llama.cpp comparison (DESIGN.md §15.6): latest master, built for sm_86, tg256 for f16/bf16/q8_0.
+# llama.cpp comparison: latest master, built for sm_86, tg256 for f16/bf16/q8_0.
 mkdir -p results/compare
 LLAMA_DIR=${LLAMA_DIR:-$HOME/llama.cpp}
 [ -d "$LLAMA_DIR" ] || git clone https://github.com/ggml-org/llama.cpp "$LLAMA_DIR"
@@ -19,7 +19,7 @@ fi
 # The link step and llama-bench need libcudart/libcublas on the loader path (setup_env.sh only adds
 # the CUDA lib dir to ~/.bashrc, which non-bash shells do not read).
 export LD_LIBRARY_PATH="/usr/local/cuda-12.6/lib64:$CUBLAS_DIR/lib:${LD_LIBRARY_PATH:-}"
-# gcc-13 / CUDA 12.6 paths: same approved toolchain deviation as scripts/build.sh (PROGRESS.md "Decisions").
+# gcc-13 / CUDA 12.6 paths, same toolchain as scripts/build.sh.
 cmake -S "$LLAMA_DIR" -B "$LLAMA_DIR/build" -DGGML_CUDA=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_CUDA_ARCHITECTURES=86 \
     -DCMAKE_C_COMPILER=gcc-13 -DCMAKE_CXX_COMPILER=g++-13 -DCMAKE_CUDA_HOST_COMPILER=g++-13 \
     -DCMAKE_CUDA_COMPILER=/usr/local/cuda-12.6/bin/nvcc \

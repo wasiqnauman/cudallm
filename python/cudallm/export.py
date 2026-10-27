@@ -1,4 +1,4 @@
-"""Convert the HF Llama-3.2-1B-Instruct checkpoint to a .cudallm file (DESIGN.md §12.4).
+"""Convert the HF Llama-3.2-1B-Instruct checkpoint to a .cudallm file.
 
 Usage: python -m cudallm.export --hf-dir DIR --out FILE --dtype {bf16,int8,int4}
 """
@@ -137,7 +137,7 @@ def export(hf_dir: Path, out: Path, dtype: str) -> None:
 
     quant = dtype != "bf16"
     names = [t[0] for t in tensors]
-    assert names == fmt.expected_names(n_layers, quant), "tensor order does not match §7.5"
+    assert names == fmt.expected_names(n_layers, quant), "tensor order does not match the .cudallm format"
 
     weight_dtype = {"bf16": fmt.WEIGHT_BF16, "int8": fmt.WEIGHT_INT8, "int4": fmt.WEIGHT_INT4}[dtype]
     header = {

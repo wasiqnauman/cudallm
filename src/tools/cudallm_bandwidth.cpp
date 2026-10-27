@@ -1,4 +1,4 @@
-// cudallm_bandwidth: measured DRAM bandwidth of this GPU (DESIGN.md §13.5).
+// cudallm_bandwidth: measured DRAM bandwidth of this GPU.
 // The project's "measured peak" is read_gbps_best.
 #include <cuda_runtime.h>
 

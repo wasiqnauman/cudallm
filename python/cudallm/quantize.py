@@ -1,4 +1,4 @@
-"""Weight-only quantization used by the exporter and the reference model (DESIGN.md §12.3)."""
+"""Weight-only quantization used by the exporter and the reference model."""
 import numpy as np
 
 

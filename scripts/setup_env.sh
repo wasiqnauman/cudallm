@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
-# Native Ubuntu 26.10 variant of DESIGN.md §6.2 (approved deviation, see PROGRESS.md "Decisions").
+# Environment setup for native Ubuntu 26.10.
 # The NVIDIA driver is already installed; only the CUDA 12.6 toolkit is installed here.
 sudo apt-get update
 sudo apt-get install -y build-essential gcc-13 g++-13 cmake git wget

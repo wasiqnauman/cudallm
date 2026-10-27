@@ -7,7 +7,7 @@
 
 namespace cudallm {
 
-// Typed errors so the C API can map failures to distinct error codes (§11).
+// Typed errors so the C API can map failures to distinct error codes.
 class FormatError : public std::runtime_error {
 public:
     using std::runtime_error::runtime_error;

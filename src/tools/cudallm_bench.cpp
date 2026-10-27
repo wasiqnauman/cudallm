@@ -1,4 +1,4 @@
-// cudallm_bench: end-to-end decode benchmark (DESIGN.md §13.3).
+// cudallm_bench: end-to-end decode benchmark.
 #include <cuda_runtime.h>
 
 #include <algorithm>

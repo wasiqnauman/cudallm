@@ -16,7 +16,7 @@ namespace cudallm {
 
 namespace {
 
-// Llama-3.2-1B dimensions (DESIGN.md §4); the loader accepts nothing else.
+// Llama-3.2-1B dimensions; the loader accepts nothing else.
 constexpr uint32_t kHidden = 2048;
 constexpr uint32_t kInter = 8192;
 constexpr uint32_t kLayers = 16;
@@ -62,7 +62,7 @@ void add_linear(std::vector<ExpectedTensor>& out, const std::string& name, Weigh
     }
 }
 
-// The exact §7.5 tensor sequence for a given weight type.
+// The exact tensor sequence for a given weight type.
 std::vector<ExpectedTensor> expected_tensors(WeightType wt) {
     std::vector<ExpectedTensor> t;
     t.push_back({"rope.inv_freq", DType::F32, kHeadDim / 2, 1});

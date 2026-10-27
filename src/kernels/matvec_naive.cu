@@ -9,7 +9,7 @@ namespace {
 // matvec_naive_kernel: grid ceil(rows/256), block 256, no shared memory.
 // One thread per output row, looping over all columns in order with an fp32 accumulator.
 // Neighbouring threads read different rows, so loads are uncoalesced: this is the
-// deliberate baseline (DESIGN.md §10.5) and must not be improved.
+// deliberate baseline and must not be improved.
 __global__ void matvec_naive_kernel(const uint16_t* __restrict__ w, const float* __restrict__ x,
                                     float* __restrict__ y, int rows, int cols) {
     const int row = blockIdx.x * blockDim.x + threadIdx.x;

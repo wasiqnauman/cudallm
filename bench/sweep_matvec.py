@@ -1,4 +1,4 @@
-"""Rows-per-block sweep for the opt matvec (DESIGN.md §15.4).
+"""Rows-per-block sweep for the opt matvec.
 
 Runs cudallm_kernelbench --op shapes for each weight type and rpb, picks per weight type the rpb with
 the lowest weighted_us (ties -> smaller rpb), saves results/sweep_matvec.json and prints the winners.

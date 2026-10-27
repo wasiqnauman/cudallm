@@ -1,4 +1,4 @@
-"""Reader/writer for the .cudallm weight file format (DESIGN.md §7)."""
+"""Reader/writer for the .cudallm weight file format."""
 import struct
 from pathlib import Path
 
@@ -7,14 +7,14 @@ import numpy as np
 MAGIC = b"CLLM"
 VERSION = 1
 
-# Tensor dtype codes (§7.4).
+# Tensor dtype codes.
 F32 = 0
 BF16 = 1
 F16 = 2
 I8 = 3
 I4X2 = 4
 
-# File-level weight_dtype codes (§7.2).
+# File-level weight_dtype codes.
 WEIGHT_BF16 = 1
 WEIGHT_INT8 = 3
 WEIGHT_INT4 = 4

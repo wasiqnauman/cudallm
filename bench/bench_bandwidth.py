@@ -1,4 +1,4 @@
-"""Measure DRAM bandwidth with build/cudallm_bandwidth (DESIGN.md §15.2)."""
+"""Measure DRAM bandwidth with build/cudallm_bandwidth."""
 import json
 
 from common import BUILD_DIR, RESULTS_DIR, git_commit, gpu_snapshot, run, save_json

@@ -1,4 +1,4 @@
-// cudallm_kernelbench: kernel microbenchmarks (DESIGN.md §13.4).
+// cudallm_kernelbench: kernel microbenchmarks.
 #include <cuda_fp16.h>
 #include <cuda_runtime.h>
 

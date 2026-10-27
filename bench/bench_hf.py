@@ -1,4 +1,4 @@
-"""HF transformers bf16 decode baseline on the same GPU (DESIGN.md §15.5)."""
+"""HF transformers bf16 decode baseline on the same GPU."""
 import statistics
 import time
 

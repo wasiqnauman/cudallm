@@ -1,4 +1,4 @@
-"""Shared helpers for the benchmark scripts (DESIGN.md §15.1)."""
+"""Shared helpers for the benchmark scripts."""
 import json
 import subprocess
 import sys

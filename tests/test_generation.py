@@ -1,7 +1,4 @@
-"""Greedy generation: engine vs ReferenceModel token-for-token (DESIGN.md §14.8).
-
-After Phase 1 the only allowed change to this file is appending to ENABLED_CONFIGS.
-"""
+"""Greedy generation: engine vs ReferenceModel token-for-token."""
 import pytest
 import torch
 from transformers import AutoTokenizer

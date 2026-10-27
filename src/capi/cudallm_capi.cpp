@@ -20,7 +20,7 @@ thread_local std::string g_last_error;
 
 void set_error(const char* msg) { g_last_error = msg ? msg : ""; }
 
-// Maps a caught exception to the C error code (DESIGN.md §11).
+// Maps a caught exception to the C error code.
 int error_code(const std::exception& ex) {
     if (dynamic_cast<const cudallm::ArgError*>(&ex)) return CUDALLM_ERR_INVALID_ARG;
     if (dynamic_cast<const cudallm::FormatError*>(&ex)) return CUDALLM_ERR_FORMAT;

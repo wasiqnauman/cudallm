@@ -1,4 +1,4 @@
-"""Greedy text generation with the cudallm engine (DESIGN.md §12.8).
+"""Greedy text generation with the cudallm engine.
 
 Usage: python -m cudallm.generate --prompt TEXT [--dtype bf16|int8|int4] [--max-new-tokens 128] [--no-chat]
        [--matvec opt|naive] [--attn opt|naive] [--no-fuse] [--no-graph]

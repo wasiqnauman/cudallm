@@ -1,4 +1,4 @@
-"""WikiText-2 perplexity for the engine or HF transformers (DESIGN.md §15.7).
+"""WikiText-2 perplexity for the engine or HF transformers.
 
 Usage: python bench/eval_ppl.py --target {engine,hf} [--dtype bf16|int8|int4] [--windows 40] [--window-len 512]
 """

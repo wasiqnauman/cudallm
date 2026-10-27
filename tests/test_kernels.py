@@ -1,4 +1,4 @@
-"""Single-kernel tests against float64 numpy references (DESIGN.md §14.6)."""
+"""Single-kernel tests against float64 numpy references."""
 import numpy as np
 import pytest
 
@@ -27,7 +27,7 @@ def bf16_bits_to_f64(bits: np.ndarray) -> np.ndarray:
 
 
 def llama3_inv_freq() -> np.ndarray:
-    """§19 formula, in float64 then stored as fp32 (tests only need plausible positive values)."""
+    """RoPE inverse-frequency formula, in float64 then stored as fp32 (tests only need plausible positive values)."""
     i = np.arange(32, dtype=np.float64)
     base = 1.0 / 500000.0 ** (2 * i / 64)
     lam = 2 * np.pi / base
